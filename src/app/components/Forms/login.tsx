@@ -7,12 +7,13 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function SignInForm() {
   const router = useRouter();
   const formik = useFormik({
     initialValues: {
-      userEmail: "jobseeker1@gmail.com",
+      userEmail: "company1@gmail.com",
       password: "1234",
     },
     validationSchema: loginSchema,
@@ -58,6 +59,14 @@ export default function SignInForm() {
   return (
     <div className="min-h-screen flex items-start pt-12 justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
+        <div className="place-items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Logo image"
+            width={40}
+            height={50}
+          />
+        </div>
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login
         </h2>
@@ -99,13 +108,13 @@ export default function SignInForm() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 hover:cursor-pointer  transition">
+            className="w-full rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
             Login
           </button>
           <div className="flex justify-center">
             <Link
               href="/register"
-              className="w-1/2 block text-center bg-blue-600 text-white py-1 rounded-lg hover:bg-blue-700 hover:cursor-pointer  transition">
+              className="w-1/2 rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
               Register
             </Link>
           </div>

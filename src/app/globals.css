@@ -24,3 +24,52 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* form */
+#applicationForm {
+  display: grid;
+  gap: 18px;
+  padding: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 30px;
+}
+#applicationForm > .left_form {
+  display: flex;
+  flex-direction: column;
+}
+
+#applicationForm > .right_form {
+  display: flex;
+  flex-direction: column;
+}
+.notes {
+  font-size: 17px;
+  min-height: 90px;
+  border: 1px solid black;
+  field-sizing: content;
+}
+#jobType,
+#status {
+  line-height: 18px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.textEditor_container {
+  z-index: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #applicationForm {
+    grid-template-columns: 1fr;
+  }
+  #applicationForm > .left_form {
+    border-right: none;
+    border-bottom: 2px solid #cccccc;
+    padding: 0px;
+    padding-bottom: 20px;
+  }
+}

@@ -8,7 +8,7 @@ import { getUserDetails } from "@/actions/employee/actions";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
-const DashboardEmployee = async () => {
+const DashboardEmployee = () => {
   const [chartdata, setChartData] = useState<JobSeeker[]>([]);
 
   useEffect(() => {

@@ -14,9 +14,8 @@ const UserPages = async () => {
       <div className="text-2xl text-center">
         {userDetails}:{role}
       </div>
-      <div className="">
-        <DashboardCompany data={data} />
-      </div>
+
+      <DashboardCompany data={data} />
     </div>
   );
 };
