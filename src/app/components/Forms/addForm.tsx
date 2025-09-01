@@ -1,17 +1,18 @@
 "use client";
 import type React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { TextIgniter } from "@mindfiredigital/react-text-igniter";
 import { toast } from "react-toastify";
-import { formInterface } from "@/types/employer";
 import { useFormik } from "formik";
 import { addFormSchema } from "@/app/Schemas/schema";
-import axios from "axios";
 import { addForm } from "@/actions/employer/actions";
 
 const Form = () => {
   //text igniter
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<{
+    getHtml: () => string;
+    getJson: () => string;
+  } | null>(null);
   const features = [
     "heading",
     "bold",
@@ -49,7 +50,7 @@ const Form = () => {
     validationSchema: addFormSchema,
     onSubmit: async (values) => {
       try {
-        values.notes = handleGetJsonContent();
+        values.notes = handleGetJsonContent() || "";
         console.log(values);
         const satatus = await addForm(values);
         if (satatus === 201) toast.success("Form added successfully !");
@@ -69,6 +70,10 @@ const Form = () => {
     if (element?.style) {
       element.style.width = "100%";
     }
+  }, []);
+  useEffect(() => {
+    console.log(editorRef.current);
+    console.log(typeof editorRef.current);
   }, []);
 
   return (
