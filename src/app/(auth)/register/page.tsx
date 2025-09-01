@@ -1,4 +1,4 @@
-import Register from "@/app/components/Forms/register";
+import Register from "@/components/Forms/register";
 
 export default async function SignUp() {
   return (

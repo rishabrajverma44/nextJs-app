@@ -6,8 +6,10 @@ import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import { addFormSchema } from "@/app/Schemas/schema";
 import { addForm } from "@/actions/employer/actions";
+import { useRouter } from "next/navigation";
 
 const Form = () => {
+  const router = useRouter();
   //text igniter
   const editorRef = useRef<{
     getHtml: () => string;
@@ -55,6 +57,11 @@ const Form = () => {
         const satatus = await addForm(values);
         if (satatus === 201) toast.success("Form added successfully !");
         formik.resetForm();
+        if (document.querySelector("#editor")?.innerHTML) {
+          document.querySelector("#editor")!.innerHTML = "";
+        }
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        router.push("/employer/formList");
       } catch (err) {
         console.log(err);
       }
@@ -71,9 +78,9 @@ const Form = () => {
       element.style.width = "100%";
     }
   }, []);
+
   useEffect(() => {
-    console.log(editorRef.current);
-    console.log(typeof editorRef.current);
+    console.log(document.querySelector("#editor")?.innerHTML);
   }, []);
 
   return (
@@ -184,7 +191,7 @@ const Form = () => {
             </div>
 
             <div className="right_form">
-              <label htmlFor="notes" className="block font-medium mb-1">
+              <label htmlFor="notes" className="block font-medium">
                 Notes:
               </label>
               <div className="textEditor_container">
@@ -199,7 +206,7 @@ const Form = () => {
           <div className="footer">
             <button
               type="submit"
-              className="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+              className="rounded-md bg-slate-800 mb-2 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
               Application
             </button>
           </div>
