@@ -20,3 +20,14 @@ export interface chartData {
   role: string;
   status: string;
 }
+
+export interface formInterface {
+  formID?: string | null | undefined;
+  company: string;
+  role: string;
+  jobType: string;
+  location: string;
+  status: string;
+  date: string;
+  notes: string;
+}

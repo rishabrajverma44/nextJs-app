@@ -38,18 +38,6 @@ const DashboardCompany = async ({ data }: { data: Promise<chartData[]> }) => {
         display: true,
         text: "Job Application Status",
       },
-      tooltip: {
-        // callbacks: {
-        //   label: function (context: any) {
-        //     const status = context.label;
-        //     const details = chartdata.filter((item) => item.status === status);
-        //     return details.map(
-        //       (data) =>
-        //         `Company: ${data.company},Role: ${data.role}, Job Type: ${data.jobType}, `
-        //     );
-        //   },
-        // },
-      },
     },
   };
 

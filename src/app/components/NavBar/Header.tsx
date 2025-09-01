@@ -52,6 +52,17 @@ const Header = () => {
           </Link>
           <nav className="hidden md:block">
             <ul className="flex gap-6">
+              <li>
+                <Link
+                  href="/"
+                  className={`transition-colors ${
+                    pathname === "/"
+                      ? "text-blue-500 font-semibold"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                  }`}>
+                  Home
+                </Link>
+              </li>
               {!role && (
                 <li>
                   <Link
@@ -65,17 +76,7 @@ const Header = () => {
                   </Link>
                 </li>
               )}
-              <li>
-                <Link
-                  href="/"
-                  className={`transition-colors ${
-                    pathname === "/"
-                      ? "text-blue-500 font-semibold"
-                      : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
-                  }`}>
-                  Home
-                </Link>
-              </li>
+
               {role &&
                 menu.map((menu) => (
                   <li key={menu.name}>
@@ -122,6 +123,17 @@ const Header = () => {
         </div>
         <nav>
           <ul className="flex flex-col p-4 gap-4">
+            <li>
+              <Link
+                href="/"
+                className={`transition-colors ${
+                  pathname === "/"
+                    ? "text-blue-500 font-semibold"
+                    : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                }`}>
+                Home
+              </Link>
+            </li>
             {!role && (
               <li>
                 <Link
@@ -136,17 +148,7 @@ const Header = () => {
                 </Link>
               </li>
             )}
-            <li>
-              <Link
-                href="/"
-                className={`transition-colors ${
-                  pathname === "/"
-                    ? "text-blue-500 font-semibold"
-                    : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
-                }`}>
-                Home
-              </Link>
-            </li>
+
             {role &&
               menu.map((menu) => (
                 <li key={menu.name}>
