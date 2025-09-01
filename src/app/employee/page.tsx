@@ -1,32 +1,23 @@
 import axios from "axios";
 import React from "react";
-
-interface userType {
-  id: string;
-  username: string;
-  email: string;
-}
-
-async function featchUsers(): Promise<userType[]> {
-  const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-  return res.data;
-}
+import DashboardEmployee from "./dashboard/page";
+import { getUserDetails } from "@/actions/employee/actions";
+import { cookies } from "next/headers";
 
 const UserPages = async () => {
-  const userData = await featchUsers();
+  const cookieStore = await cookies();
+  const role = cookieStore.get("job-app-role")?.value;
+
+  const userDetails = await getUserDetails();
+  console.log(userDetails);
 
   return (
     <div>
-      <div className="text-3xl text-center">Employee pages</div>
+      <div className="text-3xl text-center">
+        {userDetails}:{role}
+      </div>
       <div className="pl-4">
-        {userData.map((user) => {
-          return (
-            <ol key={user.id} className="pb-2">
-              <li>user name : {user.username}</li>
-              <li>email :{user.email}</li>
-            </ol>
-          );
-        })}
+        <DashboardEmployee />
       </div>
     </div>
   );

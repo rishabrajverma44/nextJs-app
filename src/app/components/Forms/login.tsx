@@ -25,7 +25,6 @@ export default function SignInForm() {
               const token = res.headers.authorization.split(" ")[1];
               const role = res.data.role;
 
-              // store in cookies
               Cookies.set("job-app-token", token, { expires: 1 });
               Cookies.set("job-app-role", role, { expires: 1 });
 
@@ -43,7 +42,9 @@ export default function SignInForm() {
             }
           })
           .catch((err) => {
-            toast.error("Wrong credentials !");
+            if (err.status === 404) {
+              toast.warn(err.response.data);
+            } else toast.error(err.message);
           });
       } catch (err) {
         console.error("Login error", err);
@@ -55,7 +56,7 @@ export default function SignInForm() {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-screen flex items-start pt-12 justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login
