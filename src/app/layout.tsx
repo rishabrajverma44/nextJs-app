@@ -1,4 +1,4 @@
-import Header from "./components/NavBar/Header";
+import Header from "../components/NavBar/Header";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 

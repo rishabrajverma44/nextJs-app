@@ -1,4 +1,4 @@
-import FormList from "@/app/components/Forms/formList";
+import FormList from "@/components/Forms/formList";
 const page = () => {
   return (
     <div>

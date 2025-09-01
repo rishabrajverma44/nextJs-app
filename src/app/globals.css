@@ -31,11 +31,11 @@ body {
   gap: 18px;
   padding: 10px;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 30px;
 }
 #applicationForm > .left_form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 #applicationForm > .right_form {
