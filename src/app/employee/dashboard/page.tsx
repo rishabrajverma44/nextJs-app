@@ -9,7 +9,7 @@ import { getUserDetails } from "@/actions/employee/actions";
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 const DashboardEmployee = () => {
-  const [chartdata, setChartData] = useState<JobSeeker[]>([]);
+  const [chartdata] = useState<JobSeeker[]>([]);
 
   useEffect(() => {
     const featchData = async function () {
@@ -45,18 +45,6 @@ const DashboardEmployee = () => {
       title: {
         display: true,
         text: "Job Application Status",
-      },
-      tooltip: {
-        callbacks: {
-          label: function (context: any) {
-            const status = context.label;
-            const details = chartdata.filter((item) => item.status === status);
-            return details.map(
-              (data) =>
-                `Company: ${data.company},Role: ${data.role}, Job Type: ${data.jobType}, `
-            );
-          },
-        },
       },
     },
   };

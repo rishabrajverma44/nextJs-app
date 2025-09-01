@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import DashboardEmployee from "./dashboard/page";
 import { getUserDetails } from "@/actions/employee/actions";

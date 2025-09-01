@@ -3,7 +3,6 @@ import { registerSchema } from "@/app/Schemas/schema";
 import axios from "axios";
 import { useFormik } from "formik";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import Image from "next/image";
