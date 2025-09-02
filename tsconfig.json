@@ -28,7 +28,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/not-found.ts",
-    "src/app/employer/error.js"
+    "src/app/employer/error.js",
+    "src/lib/usePagination.ts",
+    "src/lib/Pagination.js"
   ],
   "exclude": ["node_modules"]
 }

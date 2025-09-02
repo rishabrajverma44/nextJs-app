@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 
@@ -12,6 +12,8 @@ const Header = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState<string | null>(null);
+  const [empDropdown, setEmpDropdown] = useState(false);
+  const [employeeDropdown, setEmployeeDropdown] = useState(false);
 
   const employeeMenu = [
     { name: "jobs", path: "/employee" },
@@ -21,6 +23,7 @@ const Header = () => {
   const employerMenu = [
     { name: "Dashboard", path: "/employer" },
     { name: "Add form", path: "/employer/addform" },
+    { name: "List form", path: "/employer/formList" },
   ];
 
   useEffect(() => {
@@ -38,7 +41,7 @@ const Header = () => {
   const menu = role === "company" ? employerMenu : employeeMenu;
 
   return (
-    <header className="bg-background border-b text-foreground py-3 sticky top-0 z-50 shadow-sm">
+    <header className="bg-background border-b-1 border-gray-600 text-foreground py-2 sticky top-0 z-50 shadow-md">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex justify-between items-center">
           <Link
@@ -48,10 +51,11 @@ const Header = () => {
               src="/images/logo.png"
               alt="Logo image"
               width={50}
-              height={50}></Image>
+              height={50}
+            />
           </Link>
           <nav className="hidden md:block">
-            <ul className="flex gap-6">
+            <ul className="flex gap-6 space-x-6 relative">
               <li>
                 <Link
                   href="/"
@@ -76,21 +80,44 @@ const Header = () => {
                   </Link>
                 </li>
               )}
-
-              {role &&
-                menu.map((menu) => (
-                  <li key={menu.name}>
-                    <Link
-                      href={menu.path}
-                      className={`transition-colors ${
-                        pathname === menu.path
-                          ? "text-blue-500 font-semibold"
-                          : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
-                      }`}>
-                      {menu.name}
-                    </Link>
-                  </li>
-                ))}
+              {role && (
+                <li
+                  onClick={() => setEmpDropdown(!empDropdown)}
+                  className="cursor-pointer relative">
+                  <span className=" text-gray-700 dark:text-gray-300 hover:text-blue-500 flex gap-1">
+                    <span
+                      className={
+                        empDropdown ? "font-semibold text-blue-500" : ""
+                      }>
+                      Form
+                    </span>
+                    <span className="">
+                      {empDropdown ? (
+                        <ChevronUp size={22} />
+                      ) : (
+                        <ChevronDown size={22} />
+                      )}
+                    </span>
+                  </span>
+                  {empDropdown && (
+                    <ul className="absolute border-1 border-gray-500  rounded-md right-[-64px] mt-2 w-40 bg-white dark:bg-gray-800 shadow-lg flex flex-col z-50 divide-y divide-gray-500 dark:divide-gray-700">
+                      {menu.map((menu) => (
+                        <li key={menu.name}>
+                          <Link
+                            href={menu.path}
+                            className={`block px-4 py-2 transition-colors ${
+                              pathname === menu.path
+                                ? "text-blue-500 font-semibold"
+                                : "text-gray-700 dark:text-gray-300 hover:text-blue-500"
+                            }`}>
+                            {menu.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              )}
 
               {role && (
                 <li>

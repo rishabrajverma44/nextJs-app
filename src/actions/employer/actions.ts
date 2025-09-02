@@ -86,3 +86,28 @@ export async function addForm(form: formInterface) {
     throw err;
   }
 }
+
+export async function formList() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("job-app-token")?.value;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/company`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      cache: "no-store",
+    });
+
+    if (res.status === 200) {
+      return res.json();
+    } else {
+      throw new Error(`Failed to get form (status ${res.status})`);
+    }
+  } catch (err) {
+    console.error("Error in get form:", err);
+    throw err;
+  }
+}
