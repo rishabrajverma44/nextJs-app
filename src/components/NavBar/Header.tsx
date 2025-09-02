@@ -13,7 +13,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState<string | null>(null);
   const [empDropdown, setEmpDropdown] = useState(false);
-  const [employeeDropdown, setEmployeeDropdown] = useState(false);
 
   const employeeMenu = [
     { name: "jobs", path: "/employee" },
